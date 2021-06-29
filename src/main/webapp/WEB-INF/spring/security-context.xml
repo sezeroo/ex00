@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--인증 실패시 사용하기 위한 빈클래스 설정-->
+    <bean id="customAccessDenied" class="com.zerock.security.CustomAccessDeniedHandler"></bean>
+
+    <!--어디서 로그인을 해도 role 에맞는 페이지로 이동해주기 위한 빈 클래스-->
+   <!-- <bean id="customLoginSuccess" class="com.zerock.security.CustomLoginSuccessHandler"></bean>-->
+
+    <!--passwordEncoder 빈 등록하기-->
+    <!--<bean id="customPasswordEncoder" class="com.zerock.security.CustomNoOpPasswordEncoder"/>-->
+
+    <!--스프링 api 를 사용한 passowrdEncoder 사용하기.-->
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!--userDetailService 커스텀해서 사용하기-->
+    <bean id="customUserDetailService" class="com.zerock.security.CustomUserDetailService"/>
+
+
+   <!-- //기본설정이 표현식을 사용하는것-->
+    <security:http auto-config="true" use-expressions="true">
+
+        <security:intercept-url pattern="/smaple/all" access="permitAll()"/>
+
+        <!--게시물 조회하기.-->
+        <security:intercept-url pattern="/board/get" access="permitAll()"/>
+
+        <security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
+
+        <security:intercept-url pattern="/board/register" access="hasAnyRole({'ROLE_ADMIN','ROLE_MEMBER'})"/>
+
+        <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
+
+        <!--스프링 시큐리티에서 기본적으로 제공해주는 로그인 페이지 -->
+        <!--<security:form-login/>-->
+
+        <!--내가 만든 로그인 페이지 사용하기-->
+        <!--어디서 로그인하더라도 role 에맞는 페이지로 이도하기 위한 빈 사용 customLoginSuccess-->
+      <!--  <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>-->
+
+
+        <!--스프링 시큐리티는 기본적으로 로그인 후 처리를 SavedRequestAwareAuthenticationSuccessHandler-->
+        <!--클래스를 이용합니다. 해당클래스는 사용자가 원래 보려고 했던 페이지의 정보를 유지해서
+        로그인 후에 다시 원했던 페이지로 이동하는 방식입니다.-->
+        <security:form-login login-page="/customLogin"/>
+
+
+
+        <!--로그아웃시 커스텀해서 사용하기-->
+        <security:logout logout-url="/customLogout" invalidate-session="true"
+                         delete-cookies="remember-me,JSESSION_ID"/>
+
+
+        <!--인증 오류가 발생했을때 핸들하는 페이지.-->
+        <!--<security:access-denied-handler error-page="/accessError"/>-->
+
+        <!--인증 오류 발생시 페이지로 바로 보내지 않고 내가 커스텀 해서 사용하기.-->
+        <!--위쪽 빈으로 customAccessDenied 설정해놈-->
+        <security:access-denied-handler ref="customAccessDenied"/>
+
+        <!--rememberme 자동로그인 설정하기-->
+        <security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
+
+    </security:http>
+
+    <!--인증과 권한에 대한 실제 처리는 UserDetailService를 이용해 처리해야한다.-->
+    <security:authentication-manager>
+
+        <!--userDetailService Custom 사용하기 -->
+        <security:authentication-provider
+        user-service-ref="customUserDetailService">
+
+            <!--dataSource 는 rootcontext.xml 에 정의되어 있습니다.-->
+           <!-- <security:jdbc-user-service data-source-ref="dataSource"/>-->
+
+            <!--jdbc 에 등록되어 있는 user 정보 사용하기-->
+      <!--      <security:jdbc-user-service data-source-ref="dataSource"
+           users-by-username-query="select userid,userpw,enabled from tbl_member where userid = ?"
+            authorities-by-username-query="select userid,auth from tbl_member_auth
+                where userid = ? "/>-->
+
+            <!--customPasswordEncoder 설정하기.ㄴ-->
+           <!-- <security:password-encoder  ref="customPasswordEncoder"/>-->
+            <security:password-encoder ref="bcryptPasswordEncoder"/>
+
+
+
+
+<!-- jdbc 사용전 하나하나 매핑해서 사용하던 유저 정보
+            <security:user-service>
+
+                <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
+
+                <security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN,ROLE_MEMBER"/>
+
+
+            </security:user-service>
+-->
+
+        </security:authentication-provider>
+
+    </security:authentication-manager>
+
+
+
+</beans>
