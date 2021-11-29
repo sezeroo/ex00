@@ -10,7 +10,7 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Board Read</h1>
+		<h1 class="page-header">게시물</h1>
 	</div>
 
 </div>
@@ -19,28 +19,28 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 
-			<div class="panel-heading">Board Read Page</div>
+			<div class="panel-heading">게시물</div>
 
 			<div class="panel-body">
 				<div class="form-group">
-					<label>Bno</label> <input class="form-control" name="bno"
+					<label>게시물 번호</label> <input class="form-control" name="bno"
 						value='<c:out value="${board.bno}"/>' readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label>Title</label> <input class="form-control" name="title"
+					<label>제목</label> <input class="form-control" name="title"
 						value='<c:out value="${board.title}"/>' readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label>Text area</label>
+					<label>글</label>
 					<textarea class="form-control" rows="3" name='content'
 						readonly="readonly">
 					<c:out value="${board.content}" /></textarea>
 				</div>
 
 				<div class="form-group">
-					<label>Writer</label> <input class="form-control" name="writer"
+					<label>작성자</label> <input class="form-control" name="writer"
 						value='<c:out value="${board.writer}"/>' readonly="readonly">	
 				</div>
 
@@ -49,12 +49,12 @@
 					<sec:authorize access="isAuthenticated()">
 
 					<c:if test="${pinfo.username eq board.writer}">
-					<button data-oper="modify" class="btn btn-default">Modify</button>
+					<button data-oper="modify" class="btn btn-default">수정하기</button>
 					</c:if>
 
 					</sec:authorize>
 
-				<button data-oper="list" class="btn btn-default">List</button>
+				<button data-oper="list" class="btn btn-default">게시판으로 돌아가기</button>
 					
 					<form action="/board/modify" method="get" id="operForm">
 						<input type="hidden"  id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
@@ -134,7 +134,7 @@
 	<div class="col-lg-12">
 		<div class="panel-panel-default">
 
-			<div class="panel-heading">Files</div>
+			<div class="panel-heading">업로드된 파일</div>
 			<%--/.panel-heading--%>
 			<div class="panel=body">
 
@@ -162,8 +162,7 @@
 			<div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i> Reply
 				<sec:authorize access="isAuthenticated()">
-				<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New
-					Reply</button>
+				<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">댓글달기</button>
 				</sec:authorize>
 			</div>
 
@@ -197,17 +196,17 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+				<h4 class="modal-title" id="myModalLabel">댓글달기</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
 					<label>Reply</label>
-					<input class="form-control" name="reply" value="NewReply!!!!">
+					<input class="form-control" name="reply" value="새로운댓글">
 				</div>
 			
 				<div class="form-group">
 					<label>Replyer</label>
-					<input class="form-control" name="replyer" value="replyer">
+					<input class="form-control" name="replyer" value="댓글작성자">
 				</div>
 			
 				<div class="form-group">
@@ -217,10 +216,10 @@
 			
 			</div>
 			<div class="modal-footer">
-				<button id="modalModBtn" type="button" class="btn btn-warning" >Modify</button>
-				<button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-				<button id="modalRegisterBtn" type="button" class="btn btn-default">Register</button>
-				<button id="modalCloseBtn" type="button" class="btn btn-default">Close</button>
+				<button id="modalModBtn" type="button" class="btn btn-warning" >수정하기</button>
+				<button id="modalRemoveBtn" type="button" class="btn btn-danger">삭제하기</button>
+				<button id="modalRegisterBtn" type="button" class="btn btn-default">등록하기</button>
+				<button id="modalCloseBtn" type="button" class="btn btn-default">닫기</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -340,6 +339,7 @@
 			//input 태그들의 값을 공백으로 교체
 			modal.find("input").val("");
 			modal.find("input[name='replyer']").val(replyer);
+			modal.find("input[name='replyer']").attr("readonly","readonly");
 			modalInputReplyDate.closest("div").hide();
 			modal.find("button[id!='modalCloseBtn']").hide();
 			
@@ -388,16 +388,20 @@
 			console.log(rno + "입니다.");
 			
 			replyService.get(rno,function(data){
-				
+
 					modalInputReply.val(data.reply);
-					modalInputReplyer.val(data.replyer);
+					modalInputReplyer.val(data.replyer).attr("readonly","readonly");
 					modalInputReplyDate.val(replyService.displayTime(data.replyDate)).attr("readonly","readonly");
 					modal.data("rno",data.rno);
-					
+
 					modal.find("button[id!='modalCloseBtn']").hide();
+				if(replyer==data.replyer ){
 					modalModBtn.show();
+				}
+				if(replyer == data.replyer|| replyer.includes("admin") ){
 					modalRemoveBtn.show();
-					
+				}
+
 					$(".modal").modal("show");
 				
 			});

@@ -18,8 +18,8 @@
             <div class="row">
                 <div class="col-lg-12">
                 	<div class="panel panel-default">
-                        <div class="panel-heading">Board List page
-                        <button id='regbtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
+                        <div class="panel-heading">게시판
+                        <button id='regbtn' type="button" class="btn btn-xs pull-right">게시물 작성</button>
                          </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

@@ -68,13 +68,18 @@
           <element id="library" level="project" name="Maven: com.oracle.database.ha:simplefan:11.2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.database.ha:ons:11.2.0.4" />
           <element id="library" level="module" name="ojdbc8.jar" module-name="ex00" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.0.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5" />
         </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/controller-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="ex00/web/Web" />
-      <element id="artifact" artifact-name="ex00:war" />
     </root>
   </artifact>
 </component>
