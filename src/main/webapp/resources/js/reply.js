@@ -47,26 +47,66 @@ var replyService = (function(){
 	
 	
 	/* end getList function */
-	
-	
-	function remove(rno, callback, error){
-		
+
+
+	function remove(reply,callback,error){
 		$.ajax({
-			type:'delete',
-			url:'/replies/'+rno,
-			success:function(deleteResult, status, xhr){
+			type: 'put',
+			url:'/replies/notRemove/'+reply.rno,
+			data:JSON.stringify(reply),
+			contentType:'application/Json; charset=utf-8',
+			success : function(result, status, xhr){
 				if(callback){
-					callback(deleteResult);
+					alert(result);
 				}
 			},
-			error:function(xhr,status,er){
+			error : function(xhr, status, err){
 				if(error){
-					error(er);
+					alert(err);
+
 				}
 			}
-		});
-	
+		}
+		);
+
 	}
+
+
+
+	// function remove(reply, callback, error){
+	// 	$.ajax({
+	// 		type:'put',
+	// 		url:'/replies/notRemove/'+reply.rno,
+	// 		contentType:"application/json; charset=utf-8",
+	// 		success:function(result,status,xhr){
+	// 			if(callback){
+	// 				callback(result);
+	// 			}
+	// 		},
+	// 		error:function(xhr,status,err){
+	// 			if(error){
+	// 				alert("콜백실패했습니다.")
+	// 			}
+	// 		}
+	// 	});
+
+
+		// $.ajax({
+		// 	type:'Delete',
+		// 	url:'/replies/'+rno,
+		// 	success:function(deleteResult, status, xhr){
+		// 		if(callback){
+		// 			callback(deleteResult);
+		// 		}
+		// 	},
+		// 	error:function(xhr,status,er){
+		// 		if(error){
+		// 			error(er);
+		// 		}
+		// 	}
+		// });
+	
+	// }
 	
 	
 	/* end remove function*/

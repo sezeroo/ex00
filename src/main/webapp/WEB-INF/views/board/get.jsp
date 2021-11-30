@@ -430,13 +430,17 @@
 		
 		modalRemoveBtn.on("click",function(e){
 			
-			var rno = modal.data("rno");
-
+			// var rno = modal.data("rno");
+			var reply = {
+				rno : modal.data("rno"),
+				reply :modalInputReply.val()
+			};
 			
-			replyService.remove(rno,function(result){
-				
+			replyService.remove(reply,function(result){
+
 				alert(result);
 				modal.modal("hide");
+
 				//showList(1);
 				showList(pageNum);	
 			});

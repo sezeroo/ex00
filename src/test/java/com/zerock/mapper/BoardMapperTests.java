@@ -1,5 +1,6 @@
 package com.zerock.mapper;
 
+import com.zerock.domain.ReplyVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class BoardMapperTests {
 
 	@Autowired
 	private BoardMapper mapper;
+
+	@Autowired
+	private ReplyMapper replyMapper;
 	
 //	@Test
 //	public void testGetList() {
@@ -41,6 +45,19 @@ public class BoardMapperTests {
 //
 //	
 //	}
+
+	@Test
+ 	public	void testReply(){
+
+		ReplyVO vo = new ReplyVO();
+		vo.setReply("연습");
+		vo.setReplyer("User13");
+		vo.setDescription("T");
+
+		log.info(vo);
+
+
+	}
 	
 
 	

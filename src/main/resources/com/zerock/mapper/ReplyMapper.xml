@@ -7,8 +7,8 @@
  
 	 	<insert id="insert" >
 	 		
-	 		insert into tbl_reply(rno, bno, reply, replyer)
-	 		values(seq_reply.nextval, #{bno},#{reply},#{replyer})
+	 		insert into tbl_reply(rno, bno, reply, replyer,description)
+	 		values(seq_reply.nextval, #{bno},#{reply},#{replyer},#{description})
 	 	
 	 	</insert>
 	 	
@@ -18,25 +18,25 @@
 	 	
 	 	</select>
 	 	
-	 	<delete id="delete">
+	 	<update id="delete">
 	 	
-	 		delete from tbl_reply where rno = #{rno}
+	 		delete from tbl_board where rno  =#{rno};
 	 	
-	 	</delete>
+	 	</update>
 	 	
 	 	<update id="update">
 	 	
-	 		update tbl_reply set reply = #{reply}, updateDate = sysdate where rno = #{rno}
+	 		update tbl_reply set reply = #{reply},description = #{description}, updateDate = sysdate where rno = #{rno}
 	 	
 	 	</update>
 	 	
 	 	<select id="getListWithPaging" resultType="com.zerock.domain.ReplyVO">
 
 		<![CDATA[	 		
-	 		select rno, bno, reply, replyer, replyDate, updateDate
+	 		select rno, bno, reply, replyer, replyDate, updateDate,description
 	 		from
 			(select /*+INDEX(tbl_reply idx_reply) */
-				rownum rn, rno, bno, reply, replyer, replyDate, updateDate
+				rownum rn, rno, bno, reply, replyer, replyDate, updateDate,description
 				from tbl_reply 
 				where bno = #{bno}
 				and rno > 0 

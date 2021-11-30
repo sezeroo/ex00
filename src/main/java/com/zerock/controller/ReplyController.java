@@ -43,7 +43,8 @@ public class ReplyController {
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo){
 		
 		log.info("ReplyVO : " + vo);
-		
+		vo.setDescription("F");
+
 		int insertCount = service.register(vo);
 		
 		log.info("Reply INSERT Count : " + insertCount) ;
@@ -82,16 +83,42 @@ public class ReplyController {
 		return new ResponseEntity<>(service.get(rno),HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/{rno}",
+//	@DeleteMapping(value = "/{rno}",
+//			produces = {org.springframework.http.MediaType.TEXT_PLAIN_VALUE})
+//
+//	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
+//
+//		log.info("remove........." + rno);
+//
+//		String reply = null;
+//
+//		return service.remove(reply,rno)==1 ?
+//				new ResponseEntity<>("success",HttpStatus.OK):
+//					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
+	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH},
+			value = "/notRemove/{rno}",
+			consumes = "application/json",
 			produces = {org.springframework.http.MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
-		
-		log.info("remove........." + rno);
-		
-		return service.remove(rno)==1 ?
-				new ResponseEntity<>("success",HttpStatus.OK):
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<String> remove(
+			@PathVariable("rno") Long rno,
+			@RequestBody ReplyVO vo){
+
+		vo.setRno(rno);
+		vo.setDescription("T");
+
+		log.info("댓글 삭제 중입니다..........................");
+		log.info("Description: + " + vo.getDescription());
+		log.info("Reply Info: + " + vo);
+
+
+		return service.modify(vo)==1 ?
+				new ResponseEntity<>("success",HttpStatus.OK) :
+				new	ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+
+
 
 	
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH},

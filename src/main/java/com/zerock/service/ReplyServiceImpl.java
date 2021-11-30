@@ -46,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService{
 	public int modify(ReplyVO vo) {
 
 		log.info("modify...........");
-		
+
 		return mapper.update(vo);
 	}
 
@@ -63,15 +63,16 @@ public class ReplyServiceImpl implements ReplyService{
 
 	@Transactional
 	@Override
-	public int remove(Long rno) {
+	public int remove(String reply,Long rno) {
 
 		log.info("remove............");	
 
 		ReplyVO vo = mapper.read(rno);
 
-		boardmapper.updateReplyCnt(vo.getBno(),-1L);
 
-		return mapper.delete(rno);
+		boardmapper.updateReplyCnt(vo.getBno(),0L);
+
+		return mapper.delete(reply,rno);
 	}
 	
 	@Override

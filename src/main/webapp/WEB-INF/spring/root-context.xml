@@ -18,6 +18,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 		<!-- JDBC 설정 하기   -->
+
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 			<!-- <property name="driverClassName"
 				value="oracle.jdbc.driver.OracleDriver"></property>
@@ -31,7 +32,7 @@
 					value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
 			
 			<property name="username" value="book"></property>
-			<property name="password" value="book"></property>
+			<property name="password" value="oracle"></property>
 		</bean>
 		
 		<!-- HikariCP configuration  -->
