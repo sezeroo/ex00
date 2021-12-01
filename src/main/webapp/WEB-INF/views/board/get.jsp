@@ -305,9 +305,12 @@
 						str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 						str += "<div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
 						str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
-						str += "<p>"+list[i].reply+"</p></div></li>";
-						
-					}				
+						if(list[i].description !="T") {
+							str += "<p>" + list[i].reply + "</p></div></li>";
+						}else{
+							str += "<p>" + "삭제된 댓글입니다." + "</p></div></li>";
+						}
+					}
 				replyUL.html(str);
 				showReplyPage(replyCnt);
 				
@@ -439,12 +442,19 @@
 			replyService.remove(reply,function(result){
 
 				alert(result);
-				modal.modal("hide");
 
+				console.log("remove ajax 전송완료 후 modal 창 닫아야합니다.");
+				modal.modal("hide");
 				//showList(1);
-				showList(pageNum);	
+				showList(pageNum);
+
+
 			});
-			
+
+
+
+
+
 		});
 		
 		var pageNum =1;

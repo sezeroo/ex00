@@ -46,6 +46,7 @@ public class ReplyServiceImpl implements ReplyService{
 	public int modify(ReplyVO vo) {
 
 		log.info("modify...........");
+		log.info("ReplyServiceImpl..... modify 에서 확인하는 Description :" + vo.getDescription());
 
 		return mapper.update(vo);
 	}

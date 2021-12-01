@@ -57,18 +57,16 @@ var replyService = (function(){
 			contentType:'application/Json; charset=utf-8',
 			success : function(result, status, xhr){
 				if(callback){
-					alert(result);
+					callback(result);
 				}
 			},
 			error : function(xhr, status, err){
 				if(error){
-					alert(err);
+					error(err);
 
 				}
 			}
-		}
-		);
-
+		});
 	}
 
 

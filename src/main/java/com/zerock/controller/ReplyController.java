@@ -108,12 +108,10 @@ public class ReplyController {
 		vo.setDescription("T");
 
 		log.info("댓글 삭제 중입니다..........................");
-		log.info("Description: + " + vo.getDescription());
-		log.info("Reply Info: + " + vo);
 
 
 		return service.modify(vo)==1 ?
-				new ResponseEntity<>("success",HttpStatus.OK) :
+				new ResponseEntity<>("댓글을 삭제했습니다.",HttpStatus.OK) :
 				new	ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
@@ -130,6 +128,7 @@ public class ReplyController {
 			@PathVariable("rno") Long rno){
 		
 		vo.setRno(rno);
+		vo.setDescription("F");
 		
 		return service.modify(vo)==1 ? 
 				new ResponseEntity<>("success",HttpStatus.OK) : 
