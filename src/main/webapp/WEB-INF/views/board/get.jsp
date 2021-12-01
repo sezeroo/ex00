@@ -311,6 +311,8 @@
 							str += "<p>" + "삭제된 댓글입니다." + "</p></div></li>";
 						}
 					}
+
+
 				replyUL.html(str);
 				showReplyPage(replyCnt);
 				
@@ -318,7 +320,7 @@
 			
 			
 		} //end show List;
-		
+
 		var modal = $(".modal");
 		var modalInputReply = modal.find("input[name='reply']");
 		var modalInputReplyer = modal.find("input[name='replyer']");
@@ -387,9 +389,11 @@
 				
 			//	<li class="left clearfix" data-rno='12'>
 			var rno =$(this).data("rno");
+
 			
 			console.log(rno + "입니다.");
-			
+
+
 			replyService.get(rno,function(data){
 
 					modalInputReply.val(data.reply);
@@ -398,22 +402,33 @@
 					modal.data("rno",data.rno);
 
 					modal.find("button[id!='modalCloseBtn']").hide();
-				if(replyer==data.replyer ){
-					modalModBtn.show();
-				}
-				if(replyer == data.replyer|| replyer.includes("admin") ){
-					modalRemoveBtn.show();
-				}
 
-					$(".modal").modal("show");
-				
+					console.log("description : " + data.description)
+
+					removeReply(data);
+
 			});
 			
 		});
-		
-		
+
+		//댓글 수정,삭제 함수.
+		function removeReply(data){
+			const description = data.description;
+
+			if(replyer==data.replyer ){
+				modalModBtn.show();
+			}
+			if(replyer == data.replyer || replyer.includes("admin") ){
+				modalRemoveBtn.show();
+			}
+			if(description == "F") {
+				$(".modal").modal("show");
+			}
+
+		}
+
 		modalModBtn.on("click",function(e){
-				
+
 				var reply = {
 						rno : modal.data("rno"),
 						reply : modalInputReply.val()
