@@ -50,6 +50,10 @@
 	 	<select id="getCountByBno" resultType="int">
 	 		select count(rno) from tbl_reply where bno =#{bno}
 	 	</select>
+
+	<delete id="remove">
+		delete from tbl_reply where bno =#{bno}
+	</delete>
 	 	
 	 	
  </mapper> 

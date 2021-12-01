@@ -15,7 +15,8 @@ public interface ReplyService {
 	public int modify(ReplyVO vo);
 	
 	public int remove(String reply,Long rno);
-	
+
+
 	public List<ReplyVO> getListWithPaging(Criteria cri, Long bno);
 	
 	public ReplyPageDTO getListPage(Criteria cri, Long bno);	

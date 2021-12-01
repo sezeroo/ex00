@@ -1,19 +1,18 @@
 package com.zerock.service;
 
-import java.util.List;
-
 import com.zerock.domain.BoardAttachVO;
-import com.zerock.mapper.BoardAttachMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.zerock.domain.BoardVO;
 import com.zerock.domain.Criteria;
+import com.zerock.mapper.BoardAttachMapper;
 import com.zerock.mapper.BoardMapper;
-
+import com.zerock.mapper.ReplyMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Log4j
 @Service
@@ -25,6 +24,9 @@ public class BoardSerivceImpl implements BoardService {
 
 	@Autowired
 	private BoardAttachMapper attachMapper;
+
+	@Autowired
+	private ReplyMapper replyMapper;
 	 
 	
 	@Override
@@ -89,6 +91,9 @@ public class BoardSerivceImpl implements BoardService {
 	public int remove(long bno) {
 
 		log.info("remove...." + bno);
+
+
+		replyMapper.remove(bno);
 
 		attachMapper.deleteAll(bno);
 

@@ -14,6 +14,9 @@ public interface ReplyMapper {
 	public ReplyVO read(Long bno);
 	
 	public int delete (String reply,Long rno);
+
+	//게시물에 있는 댓글삭제하기.
+	public int remove (Long bno);
 	
 	public int update (ReplyVO reply);
 	

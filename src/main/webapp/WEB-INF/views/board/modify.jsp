@@ -18,7 +18,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 				
-					<div class="panel-heading">Board Read Page</div>
+					<div class="panel-heading">게시물 수정</div>
 					
 					<div class="panel-body">
 						<form action="/board/modify" method="post" role="form">
@@ -27,32 +27,32 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 							<div class="form-group">
-								<label>Bno</label>
+								<label>게시물 번호</label>
 								<input class="form-control" name="bno" value='<c:out value="${board.bno}"/>' readonly="readonly" >
 							</div>						
 						
 							<div class="form-group">
-								<label>Title</label>
+								<label>제목</label>
 								<input class="form-control" name="title" value='<c:out value="${board.title}"/>' >
 							</div>
 							
 							<div class="form-group">
-								<label>Text area</label>
+								<label>글</label>
 								<textarea class="form-control" rows="3" name="content"><c:out value="${board.content}"></c:out></textarea>
 							</div>
 						
 							<div class="form-group">
-								<label>Writer</label>
+								<label>작성자</label>
 								<input class="form-control" name="writer" value='<c:out value="${board.writer}"/>' readonly="readonly">
 							</div>
 			
 							<div class="form-group">
-								<label>RegDate</label>
+								<label>작성일</label>
 								<input class="form-control" name="regdate" value='<fmt:formatDate pattern='yyyy/mm/dd' value="${board.regdate}"/>'  readonly="readonly">
 							</div>
 					
 							<div class="form-group">
-								<label>UpdateDate</label>
+								<label>수정일</label>
 								<input class="form-control" name="updateDate" value='<fmt:formatDate pattern='yyyy/mm/dd' value="${board.updateDate }"/>' readonly="readonly">
 							</div>
 
@@ -63,10 +63,13 @@
 							<c:if test="${pinfo.username eq board.writer}">
 
 							<button data-oper="modify" type="submit" class="btn btn-default" > 
-								Modify
-							</button><button data-oper="remove" type="submit" class="btn btn-default" > 
-								Remove
+								수정하기
 							</button>
+
+							<button data-oper="remove" type="submit" class="btn btn-default" >
+								삭제하기
+							</button>
+
 							</c:if>
 
 							</sec:authorize>
@@ -148,7 +151,7 @@
 </style>
 <div class="row">
 	<div class="col-lg-12">
-		<div class="panel-heading">Files</div>
+		<div class="panel-heading">파일 업로드</div>
 		<%--panel-heading--%>
 		<div class="panel-body">
 			<div class="form-group uploadDiv">
@@ -181,6 +184,7 @@
 				if(operation === 'remove'){
 					
 					formObj.attr("action", "/board/remove");
+
 				}else if(operation === 'list'){
 					
 					formObj.attr("method","get");
