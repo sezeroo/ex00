@@ -20,7 +20,7 @@ public class CommonController {
     }
 
     @GetMapping("/customLogin")
-    public void loginInput(String error, String logout, Model model){
+    public String loginInput(String error, String logout, Model model){
 
         log.info("error : " + error);
         log.info("logout : "+ logout);
@@ -34,6 +34,8 @@ public class CommonController {
             model.addAttribute("logout","Logout!!");
 
         }
+        return "CustomSecurityLogin";
+
     }
 
     @GetMapping("/customLogout")

@@ -1,8 +1,4 @@
-        </div>
-        <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
 
     <!-- jQuery -->
 <!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
@@ -21,11 +17,12 @@
     <!-- Custom Theme JavaScript -->
     <script src="/resources/dist/js/sb-admin-2.js"></script>
 
-	
 
-	
-	
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+
+
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

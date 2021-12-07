@@ -1,11 +1,12 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="ex00">
+  <artifact type="exploded-war" name="ex00:war exploded">
     <output-path>$PROJECT_DIR$/target/controller-1.0.0-BUILD-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
         <module>ex00</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -27,6 +28,8 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.25" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.0.1" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
@@ -37,11 +40,11 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.6" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.6" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5" />
           <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:3.1.4" />
           <element id="library" level="project" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.3" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
@@ -67,13 +70,6 @@
           <element id="library" level="project" name="Maven: com.oracle.database.security:osdt_core:11.2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.database.ha:simplefan:11.2.0.4" />
           <element id="library" level="project" name="Maven: com.oracle.database.ha:ons:11.2.0.4" />
-          <element id="library" level="module" name="ojdbc8.jar" module-name="ex00" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.0.1" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.0.1" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.5" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.5" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5" />
         </element>
       </element>
       <element id="directory" name="META-INF">
