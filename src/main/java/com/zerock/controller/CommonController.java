@@ -2,10 +2,12 @@
 package com.zerock.controller;
 
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Log4j
 @Controller
@@ -37,6 +39,9 @@ public class CommonController {
         return "CustomSecurityLogin";
 
     }
+
+
+
 
     @GetMapping("/customLogout")
     public void logOutGet(){

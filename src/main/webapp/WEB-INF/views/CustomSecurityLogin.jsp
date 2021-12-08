@@ -19,7 +19,7 @@
 <script
         src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script src="/resources/js/login/indexPage.js"></script>
+<%--<script src="/resources/js/login/indexPage.js"></script>--%>
 
 <link href="/resources/css/login.css" rel="stylesheet">
 
@@ -110,14 +110,81 @@
                 </div>
             </div>
             <!-- /.modal-content -->
-
+        </div>
 </body>
-<script>
-    $("#lgsubmit").on("click",function(e){
-        e.preventDefault();
-        $("form").submit();
-    })
-
-</script>
-
 </html>
+
+<script>
+$(document).ready(function(e){
+    <%--var csrfHeaderName = "${_csrf.headerName}";--%>
+    <%--var csrfTokenValue = "${_csrf.token}";--%>
+    <%--$(document).ajaxSend(function(e,xhr,options){--%>
+    <%--    xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);--%>
+
+    <%--});--%>
+    var modal = $(".modal_body");
+    var formObj = $("#memberForm");
+
+    $("#lgsubmit").on("click",function(e){
+
+
+        e.preventDefault();
+        // $("form").submit();
+        var id = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+
+        var memdata = {"username":id,"password":password};
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        /*ajax 를 전송하기 전에 실행하는 함수*/
+        /*Ajax spring security header...*/
+        $(document).ajaxSend(function(e,xhr,options){
+            xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+
+        });
+
+
+        console.log(id,password);
+
+        var member = sessionStorage.getItem("memberID");
+
+        console.log("로그인전송버튼 클릭");
+        e.preventDefault();
+
+        //formObj.submit();
+
+        $.ajax({
+            url:"/login",
+            async:false,
+            type: "POST",
+            data:memdata,
+            success:function(data,status,jqXHR){
+                if($("#saveId").is(":checked")){
+                        if(sessionStorage.getItem("memberID")==null){
+                            console.log("세션저장소에 아이디를 저장합니다");
+                            sessionStorage.setItem("memberID",memdata.username);
+                        }else{
+                            sessionStorage.removeItem("memberID");
+                        }
+                }else{
+                    sessionStorage.clear();
+                    console.log("아이디저장이 체크되어있지 않습니다.");
+                }
+                console.log("로그인 성공");
+                window.location.href = "/board/list";
+            }
+
+        })
+    })
+    console.log(sessionStorage.getItem("memberID"));
+
+    if(sessionStorage.getItem("memberID").length>0) {
+        console.log("체크박스 체크 되는지 확인하기");
+        $("input:checkbox[id='saveId']").prop("checked", true);
+        $("input[name='username']").attr("placeholder", sessionStorage.getItem("memberID"));
+        $("input[name='username']").attr("value", sessionStorage.getItem("memberID"));
+    }
+})
+</script>

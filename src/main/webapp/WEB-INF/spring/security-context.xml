@@ -48,7 +48,7 @@
         <!--스프링 시큐리티는 기본적으로 로그인 후 처리를 SavedRequestAwareAuthenticationSuccessHandler-->
         <!--클래스를 이용합니다. 해당클래스는 사용자가 원래 보려고 했던 페이지의 정보를 유지해서
         로그인 후에 다시 원했던 페이지로 이동하는 방식입니다.-->
-        <security:form-login login-page="/customLogin"/>
+        <security:form-login login-page="/customLogin" login-processing-url="/login"></security:form-login>
 
 
 

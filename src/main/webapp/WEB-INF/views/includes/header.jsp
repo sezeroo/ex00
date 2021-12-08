@@ -63,7 +63,7 @@
                 if(replyer.length >= 1){
                     var url = "/customLogout";
                     $(location).attr('href',url);
-                    replyer.replace("");
+
                 }
             })
         })
@@ -77,7 +77,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="nav" id="navDiv">
             <ul>
-                <li><a class="navbar-brand" href="/member/home">IUM</a></li>
+                <li><a class="navbar-brand" href="/board/list">IUM</a></li>
                 <li ><button class= "btn-primary btn-default" id="login" autocapitalize="off" >로그인</button></li>
                 <li><button class="btn-info btn-default" id="insert">회원가입</button></li>
             </ul>
@@ -87,98 +87,98 @@
 
 
 <!-- 모달창 시작  -->
-<div class="container">
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel" align="center">로그인</h4>
-                </div>
+<%--<div class="container">--%>
+<%--    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"--%>
+<%--         aria-labelledby="myModalLabel" aria-hidden="true">--%>
+<%--        <div class="modal-dialog">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <button type="button" class="close" data-dismiss="modal"--%>
+<%--                            aria-hidden="true">&times;</button>--%>
+<%--                    <h4 class="modal-title" id="myModalLabel" align="center">로그인</h4>--%>
+<%--                </div>--%>
 
 
-                <div class="modal-body">
-                    <form action="/member/login" method="post" id="memberForm">
-                        <div class="form-group">
-                            <input class="form-control" name="id" placeholder="아이디를 입력해주세요." value="">
-                        </div>
+<%--                <div class="modal-body">--%>
+<%--                    <form action="/member/login" method="post" id="memberForm">--%>
+<%--                        <div class="form-group">--%>
+<%--                            <input class="form-control" name="id" placeholder="아이디를 입력해주세요." value="">--%>
+<%--                        </div>--%>
 
-                        <div class="form-group">
-                            <input class="form-control" type="password" name="password" placeholder="비밀번호를 입력해주세요.">
-                        </div>
+<%--                        <div class="form-group">--%>
+<%--                            <input class="form-control" type="password" name="password" placeholder="비밀번호를 입력해주세요.">--%>
+<%--                        </div>--%>
 
-                        <div class="loginMid">
-                            <label class="autoLogin" for="hint">
-                                <input type="checkbox" id="saveId" /> 아이디저장
-                            </label>
+<%--                        <div class="loginMid">--%>
+<%--                            <label class="autoLogin" for="hint">--%>
+<%--                                <input type="checkbox" id="saveId" /> 아이디저장--%>
+<%--                            </label>--%>
 
-                            <div class="autoLogin">
-                                <input type="checkbox" id="searchId">  자동로그인
-                            </div>
-                        </div>
+<%--                            <div class="autoLogin">--%>
+<%--                                <input type="checkbox" id="searchId">  자동로그인--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
 
-                        <div class="row">
+<%--                        <div class="row">--%>
 
-                            <div class="col-lg-2">
+<%--                            <div class="col-lg-2">--%>
 
-                            </div>
+<%--                            </div>--%>
 
-                            <div class="col-lg-8" align="center">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" id="lgsubmit">로그인</button>
-                            </div>
+<%--                            <div class="col-lg-8" align="center">--%>
+<%--                                <button type="button" class="btn btn-default" data-dismiss="modal" id="lgsubmit">로그인</button>--%>
+<%--                            </div>--%>
 
-                            <div class="col-lg-2">
+<%--                            <div class="col-lg-2">--%>
 
-                            </div>
-                        </div>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="row">
+<%--                        <div class="row">--%>
 
-                            <div class="col-lg-2">
+<%--                            <div class="col-lg-2">--%>
 
-                            </div>
+<%--                            </div>--%>
 
-                            <div class="col-lg-8" align="center">
-                                <a href="/member/" id="findId">아이디 찾기/</a>
-                                <a href="/member/" id="findPw">비밀번호찾기/</a>
-                                <a href="/member/" id="insertMember">회원가입</a>
-                            </div>
+<%--                            <div class="col-lg-8" align="center">--%>
+<%--                                <a href="/member/" id="findId">아이디 찾기/</a>--%>
+<%--                                <a href="/member/" id="findPw">비밀번호찾기/</a>--%>
+<%--                                <a href="/member/" id="insertMember">회원가입</a>--%>
+<%--                            </div>--%>
 
-                            <div class="col-lg-2">
+<%--                            <div class="col-lg-2">--%>
 
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
 
-                <div class="modal-footer">
+<%--                <div class="modal-footer">--%>
 
-                    <div class="row">
-                        <div class="col-lg-2">
+<%--                    <div class="row">--%>
+<%--                        <div class="col-lg-2">--%>
 
-                        </div>
-                        <div class="col-lg-8" align="center">
-                            <button id="naverBtn" class='btn-social-login'style='background:#1FC700'><i class="xi-2x xi-naver"></i></button>
-                            <button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button>
-                            <button class='btn-social-login' style='background:#4267B2'><i class="xi-2x xi-facebook"></i></button>
-                            <button class='btn-social-login' style='background:#55ACEE'><i class="xi-2x xi-twitter"></i></button>
-                        </div>
-                        <div class="col-lg-2">
+<%--                        </div>--%>
+<%--                        <div class="col-lg-8" align="center">--%>
+<%--                            <button id="naverBtn" class='btn-social-login'style='background:#1FC700'><i class="xi-2x xi-naver"></i></button>--%>
+<%--                            <button class='btn-social-login' style='background:#FFEB00'><i class="xi-2x xi-kakaotalk text-dark"></i></button>--%>
+<%--                            <button class='btn-social-login' style='background:#4267B2'><i class="xi-2x xi-facebook"></i></button>--%>
+<%--                            <button class='btn-social-login' style='background:#55ACEE'><i class="xi-2x xi-twitter"></i></button>--%>
+<%--                        </div>--%>
+<%--                        <div class="col-lg-2">--%>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <!-- /.modal-content -->--%>
+<%--        </div>--%>
+<%--        <!-- /.modal-dialog -->--%>
+<%--    </div>--%>
     <!-- /.modal -->
     <!-- end container  -->
-</div>
+<%--</div>--%>
 
 
       
